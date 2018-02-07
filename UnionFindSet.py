@@ -2,7 +2,7 @@ from queue import Queue
 
 class UnionFindSet :
     '''
-    A UnoinFindSet is a union find disjoint set object.
+    A UnionFindSet is a union find disjoint set object.
     It supports __init__ that assigns each element to
     a unique group, numbered 1..len(elements).
     It supports union of two group ids, find, size of each
