@@ -16,6 +16,7 @@ class UnionFindSet :
         Each element is linked to an id in the normal
         version of union find disjoint set.
         '''
+        l = list(l)
         self.list_elem = l
         self.elem_ids = {}
         for i in range(len(l)) :
