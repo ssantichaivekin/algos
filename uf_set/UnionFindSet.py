@@ -108,5 +108,27 @@ class UnionFindSet :
         Like get_set_from_id but using element.
         '''
         return self.get_set_from_id(self.elem_ids[elem])
+
+if __name__ == '__main__' :
+
+    # normal test cases
+    L = {'a', 'b', 'c', 'd', 'e', 'f', 'g'}
+    U = UnionFindSet(L)
+    U.union('a', 'g')
+    U.union('g', 'c')
+    U.union('a', 'e')
+    assert U.group('a') == U.group('g') == U.group('c')
+    assert U.group('f') != U.group('d')
+    assert U.group('a') != U.group('d')
+    U.union('b', 'g')
+    assert set(U.get_set('g')) == set(['a', 'c', 'g', 'b', 'e'])
+
+    # test case generator
+    # compare the opeerations with set class provided
+    # by standard python library
+    from random import randint
+    x = set([ randint(0,1000) for i in range(1000) ])
+    y = UnionFindSet(x)
+    for 
     
 
