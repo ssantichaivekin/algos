@@ -114,6 +114,7 @@ if __name__ == '__main__' :
     from random import randint
     import matplotlib.pyplot as plt
     from timeit import timeit
+    from numpy import mean
     
     def normal_test_cases() :
         '''
@@ -190,27 +191,44 @@ if __name__ == '__main__' :
                     samegroup = False
                     print('not samegroup')
                 
-                assert (x.group(p1) == x.group(p2)) == samegroup
+                assert (x.group(p1) == x.group(p2)) == samegroup    
         
-        def timing_snippet(test_size, query_size) :
-            '''
-            Timing snippet fot the timit function.
-            '''
-            x = UnionFindSet([ i for i in range(test_size) ])
-            y = []
-            for i in range(query_size) :
-                p1 = randint(0, test_size-2)
-                p2 = randint(p1, test_size-1)
-                x.union(p1, p2)
-            for i in range(query_size) :
-                p = randint(0, test_size-1)
-                x.find(p)
-            
-        
-        normal_test_cases()
-        generated_test_cases(1, 1000, 600)
+    normal_test_cases()
+    generated_test_cases(1, 1000, 600)
 
-        def plot_ufset() :
+    def timing_snippet(test_size, query_size) :
+        '''
+        Timing snippet fot the timit function.
+        '''
+        x = UnionFindSet([ i for i in range(test_size) ])
+        y = []
+        for i in range(query_size) :
+            p1 = randint(0, test_size-2)
+            p2 = randint(p1, test_size-1)
+            x.union(p1, p2)
+        for i in range(query_size) :
+            p = randint(0, test_size-1)
+            x.find(p)
+
+    def plot_ufset() :
+        '''
+        Plot the runtime of the set.
+        '''
+        sizes = [ x * 10000 for x in range(1,16) ]
+        cmd = 'timing_snippet(%d, %d)'
+        values = []
+        for s in sizes :
+            print('Calculating: n =', s)
+            values += [ timeit(cmd % (s, s/2), number=10, globals=globals())/10 ]
+
+        plt.plot(sizes, values)
+        plt.xlabel('size, queries = sizes / 2')
+        plt.ylabel('runtime (s)')
+        plt.show()
+    
+    plot_ufset()
+
+
 
     
 
