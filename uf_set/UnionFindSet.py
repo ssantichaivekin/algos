@@ -64,6 +64,7 @@ class UnionFindSet :
             id1 = elem_ids[elem]
         else :
             print('No elements in set : ', elem)
+            print('elem_ids:', elem_ids)
             return
         return self.find_by_id(id1)
 
@@ -110,7 +111,6 @@ class UnionFindSet :
         return self.get_set_from_id(self.elem_ids[elem])
 
 if __name__ == '__main__' :
-
     # normal test cases
     L = {'a', 'b', 'c', 'd', 'e', 'f', 'g'}
     U = UnionFindSet(L)
@@ -126,9 +126,67 @@ if __name__ == '__main__' :
     # test case generator
     # compare the opeerations with set class provided
     # by standard python library
+    test_cases = 1
+    test_size = 1000
+    query_size = 300
     from random import randint
-    x = set([ randint(0,1000) for i in range(1000) ])
-    y = UnionFindSet(x)
-    for 
+    for t in range(1) :
+        x = UnionFindSet([ i for i in range(test_size) ])
+        y = []
+        for i in range(query_size) :
+            p1 = randint(0, test_size-2)
+            p2 = randint(p1, test_size-1)
+            x.union(p1, p2)
+            print('Union:', p1, p2)
+            # union and update y
+            lo1 = -1
+            lo2 = -1
+            for i in range(len(y)) :
+                if p1 in y[i] :
+                    lo1 = i
+                if p2 in y[i] :
+                    lo2 = i
+            if lo1 == -1 and lo2 == -1 :
+                # print(y, '<--', set([p1, p2]))
+                y += [set([p1, p2])]
+            if lo1 == -1 and lo2 != -1 :
+                # print(y, y[lo2], '<--', set([p1]))
+                y[lo2] |= set([p1])
+            if lo1 != -1 and lo2 == -1 :
+                # print(y, y[lo1], '<--', set([p2]))
+                y[lo1] |= set([p2])
+            if lo1 != -1 and lo2 != -1 and lo1 != lo2 :
+                # print(y, y[lo1], '<--', y[lo2], '(removed)')
+                y[lo1] |= y[lo2]
+                y.pop(lo2)
+        for i in range(len(y)) :
+            print('Sets %d in y:' % (i+1), y[i])
+        
+        # Now check whether things are in the same
+        # set
+        for i in range(query_size) :
+            p1 = randint(0, test_size-2)
+            p2 = randint(p1, test_size-1)
+            print('Test %d:' % (i+1), p1, p2, end=' ')
+            lo1 = -1
+            lo2 = -1
+
+            for i in range(len(y)) :
+                if p1 in y[i] :
+                    lo1 = i
+                if p2 in y[i] :
+                    lo2 = i
+            if p1 == p2 or (lo1 != -1 and lo1 == lo2) :
+                samegroup = True
+                print('samegroup')
+            else :
+                samegroup = False
+                print('not samegroup')
+            
+            assert (x.group(p1) == x.group(p2)) == samegroup
+        
+        
+
+        
     
 
