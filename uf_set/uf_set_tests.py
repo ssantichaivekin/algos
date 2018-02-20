@@ -1,8 +1,14 @@
+'''
+We use assert to test the functions. If it runs correctly it will not
+output anything.
+'''
+
 from random import randint
 import matplotlib.pyplot as plt
+plt.xkcd()
 from timeit import timeit
 from numpy import mean
-import UnionFindSet
+from UnionFindSet import UnionFindSet
 
 def normal_test_cases() :
     '''
@@ -30,7 +36,7 @@ def generated_test_cases(test_cases, test_size, query_size) :
             p1 = randint(0, test_size-2)
             p2 = randint(p1, test_size-1)
             x.union(p1, p2)
-            print('Union:', p1, p2)
+            # print('Union:', p1, p2)
             # union and update y
             lo1 = -1
             lo2 = -1
@@ -52,15 +58,15 @@ def generated_test_cases(test_cases, test_size, query_size) :
                 # print(y, y[lo1], '<--', y[lo2], '(removed)')
                 y[lo1] |= y[lo2]
                 y.pop(lo2)
-        for i in range(len(y)) :
-            print('Sets %d in y:' % (i+1), y[i])
+        # for i in range(len(y)) :
+            # print('Sets %d in y:' % (i+1), y[i])
         
         # Now check whether things are in the same
         # set
         for i in range(query_size) :
             p1 = randint(0, test_size-2)
             p2 = randint(p1, test_size-1)
-            print('Test %d:' % (i+1), p1, p2, end=' ')
+            # print('Test %d:' % (i+1), p1, p2, end=' ')
             lo1 = -1
             lo2 = -1
 
@@ -71,10 +77,10 @@ def generated_test_cases(test_cases, test_size, query_size) :
                     lo2 = i
             if p1 == p2 or (lo1 != -1 and lo1 == lo2) :
                 samegroup = True
-                print('samegroup')
+                # print('samegroup')
             else :
                 samegroup = False
-                print('not samegroup')
+                # print('not samegroup')
             
             assert (x.group(p1) == x.group(p2)) == samegroup    
 
@@ -106,6 +112,7 @@ def plot_ufset(sizes, runs) :
     plt.plot(sizes, values)
     plt.xlabel('size, queries = sizes / 2')
     plt.ylabel('runtime (s)')
+    plt.title('Performance of the union-find disjoint-set (%d runs)' % (runs))
     plt.show()
 
 if __name__ == '__main__' :
@@ -114,4 +121,4 @@ if __name__ == '__main__' :
 
     runs = 50
     sizes = [ x * 10000 for x in range(1,16) ]
-    plot_ufset()
+    plot_ufset(sizes, runs)
