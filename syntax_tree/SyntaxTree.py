@@ -7,4 +7,20 @@ Also support eveluate syntax tree.
 '''
 
 class SyntaxTree:
+
+    def __init__(self, operator, operands) :
+        '''
+        Initialize the SyntaxTree
+        '''
+        self.operator = operator
+        # operand is a list of SyntaxTree or Value
+        self.operands = operands
+
+    def evaluate(self) :
+        '''
+        Evaluate the SyntaxTree recusrively.
+        '''
+        opera
+
+
     
