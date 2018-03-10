@@ -2,7 +2,7 @@
 
 I will put my algorithm library here. All the algorithms here will be well documented and will have test cases and test case generators to demonstrate the algorithms.
 
-Here are the list of what I have written :
+Here are the list of what I have written + documented :
 
 - Union Find Disjoint Set
 - Fenwick Tree (simple version)
