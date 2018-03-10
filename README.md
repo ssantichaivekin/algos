@@ -8,8 +8,11 @@ Here are the list of what I have written :
 - Fenwick Tree (simple version)
 - Fenwick Tree (max in range version)
 
+Ongoing :
+
+- Syntax tree parser
+
 I'm thinking of writing and documenting:
 
 - Gaussian elimination and its variations
-- Syntax tree parser
 - solving 2SAT
