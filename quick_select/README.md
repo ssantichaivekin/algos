@@ -1,0 +1,1 @@
+Just your normal average O(n) quick select. It does not perform in place. It is a joke.
