@@ -7,6 +7,7 @@ Here are the list of what I have written + documented :
 - Union Find Disjoint Set
 - Fenwick Tree (simple version)
 - Fenwick Tree (max in range version)
+- Quickselect (no test case generators yet)
 
 Ongoing :
 
