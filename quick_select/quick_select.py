@@ -8,9 +8,6 @@ def quickselect(arr, i) :
     Return the ith element of the sorted array.
     Note that 0 <= i < len(arr).
     '''
-    if len(arr) == 1 :
-        return arr[0]
-
     pivot = arr[randint(0, len(arr)-1)]
     lower = list(filter(lambda x: x < pivot, arr))
     equal = list(filter(lambda x: x == pivot, arr))
