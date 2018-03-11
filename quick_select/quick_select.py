@@ -5,7 +5,7 @@ from random import randint
 
 def quickselect(arr, i) :
     '''
-    Return the ith element of the sorted array.
+    Return the ith element of the sorted array arr.
     Note that 0 <= i < len(arr).
     '''
     pivot = arr[randint(0, len(arr)-1)]
