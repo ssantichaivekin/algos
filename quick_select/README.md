@@ -1,1 +1,1 @@
-Just your normal average O(n) quick select. It does not perform in place. It is a joke.
+Just your normal average O(n) quick select. It does not perform in place. It is a joke (meaning working, but not that thoughtful) version of quick select.
