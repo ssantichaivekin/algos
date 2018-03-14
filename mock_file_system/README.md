@@ -17,7 +17,6 @@ Haven't tested the comment part yet.
 >>> _cd('sub1')
 >>> _pwd()
 '/root/sub1/'
-
 ```
 
 In hindsight, we should have created File class and Directory class.
