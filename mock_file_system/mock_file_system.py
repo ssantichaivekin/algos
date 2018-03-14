@@ -13,6 +13,7 @@ class Directory :
         Make a subdirectory in self.
         '''
         newdir = Directory(dirname, comment=dircomment, parent = self)
+        # print(self, '<<<', newdir)
         self.children[dirname] = newdir
     
     def pwd(self) :
@@ -37,7 +38,7 @@ class Directory :
         elif firstname == '..' :
             nextdir = self.parent
         else :
-            nextdir = self.children[targetarr[0]]
+            nextdir = self.children[firstname]
 
         if targetarr :
             return nextdir.cd_helper(targetarr)
@@ -50,8 +51,6 @@ class Directory :
         of the object being called.
         '''
         targetarr = targetname.split('/')
-        return self.cd_helper(targetarr[1:])
-        
         return self.cd_helper(targetarr)
     
     def setcomment(self, newcomment) :
@@ -86,6 +85,9 @@ class Directory :
             return self
         else :
             return gotoroot(self.parent)
+    
+    def __repr__(self) :
+        return 'Directory: ' + self.name
 
 _currentdir = Directory('root')
 
@@ -131,9 +133,29 @@ def _exec(destination, command, *args) :
     '''
     global _currentdir
     tempdir = _currentdir
-    _currentdir.cd(destination)
-    command(*args)
+    _currentdir = _currentdir.cd(destination)
+    # print('Execute directory = ', _currentdir)
+    tempvalue = command(*args)
     _currentdir = tempdir
+    return tempvalue
+
+if __name__ == '__main__' :
+    _pwd()
+    _mkdir('sub1')
+    _mkdir('sub2')
+    _mkdir('sub3')
+    assert set(_ls()) == set(['sub1', 'sub2', 'sub3'])
+    _exec('sub1', _mkdir, 'sub11')
+    _exec('sub1', _mkdir, 'sub12')
+    _exec('sub1', _mkdir, 'sub13')
+    assert set(_exec('sub1', _ls)) == set(['sub11', 'sub12', 'sub13'])
+    _cd('sub1')
+    assert _pwd() == '/root/sub1/'
+
+    # reset the Directory.
+    # Trust the garbage collection lol.
+    _currentdir = Directory('root')
+    
 
 
         
