@@ -1,0 +1,1 @@
+A mock file system. A directory have a name and a comment.
