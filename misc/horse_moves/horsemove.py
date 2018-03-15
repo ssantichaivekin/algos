@@ -33,6 +33,7 @@ def horsemove(a, b) :
                 px, py = pos
                 dx, dy = direction
                 newpos = px+dx, py+dy
+                visited.add(pos)
                 q.put((newpos, dist+1))
 
 
