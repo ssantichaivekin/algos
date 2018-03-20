@@ -13,6 +13,7 @@ Here are the list of what I have written + documented :
 Ongoing :
 
 - Syntax tree parser
+- Heap
 
 I'm thinking of writing and documenting:
 
