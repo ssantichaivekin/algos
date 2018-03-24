@@ -9,11 +9,11 @@ Here are the list of what I have written + documented :
 - Fenwick Tree: max in range version
 - Quickselect (no test case generator yet)
 - Mock file system (no test case generator yet)
+- Heap
 
 Ongoing :
 
 - Syntax tree parser
-- Heap
 
 I'm thinking of writing and documenting:
 

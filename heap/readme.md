@@ -1,2 +1,1 @@
-C++ implementation of heap.
-The other file also implements heap with value update.
+C++ implementation of heap. I will implement type template later.
