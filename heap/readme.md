@@ -1,1 +1,1 @@
-C++ implementation of heap. I will implement type template later.
+C++ implementation of heap with type template.

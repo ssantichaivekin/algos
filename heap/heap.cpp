@@ -1,11 +1,13 @@
 #include<iostream>
 #include<vector>
 #include<algorithm>
+
 using namespace std;
 
+template <class T>
 class Heap {
 
-    vector<int> arr;
+    vector<T> arr;
 
     int   leftchild(int pos)  { return 2 * pos; }
     int   rightchild(int pos) { return 2 * pos + 1; }
@@ -20,12 +22,12 @@ class Heap {
 
     // Construct an empty heap
     Heap() {
-        arr = vector<int>(1, 0);
+        arr = vector<T>(1, T());
     }
 
     // Print all elements in the heap
     void printall() {
-        for (int x : arr) {
+        for (T x : arr) {
             cout << x << ' ';
         }
     }
@@ -45,7 +47,7 @@ class Heap {
     }
     
     // Insert an element to the heap
-    void insert(int val) {
+    void insert(T val) {
         arr.push_back(val);
         int pos = arr.size() - 1;
         bubble_up(pos);
@@ -59,7 +61,7 @@ class Heap {
         return size() == 0;
     }
 
-    int peek_max() {
+    T peek_max() {
         return arr[1];
     }
 
@@ -103,15 +105,18 @@ class Heap {
 int main() {
     int size;
     cin >> size;
-    Heap h = Heap();
+    Heap<float> h = Heap<float>();
+    for(int i = 1; i <= size; i++) {
+        h.insert(float(i) / 10);
+    }
     for(int i = 1; i <= size; i++) {
         h.insert(i);
     }
-    for(int i = 1; i <= size; i++) {
+    for(float i = size; i > 0; i -= 2.5) {
         h.insert(i);
     }
     while(!h.empty()) {
-        int val = h.peek_max();
+        float val = h.peek_max();
         cout << val << ' ';
         h.pop_max();
     }
