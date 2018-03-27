@@ -1,15 +1,15 @@
 '''
-Class operator define operator,
-how many arguments it gets, how to read (read 
-via left to right or right to left), (or is it
-a prefix, suffix?) and how to evaluate such operators.
+Defines an operator.
+An operator has its own rege pattern signature and
+its own way to execute itself. These are defined in
+seperate files in Operator definitions.
 '''
 import re
 from runfile import runfile
 
 class Operator:
 
-    def read_regex_from_file(filename) :
+    def read_regex_from_file(self, filename) :
         '''
         Return the regex pattern from filename.
         '''
@@ -23,7 +23,7 @@ class Operator:
         # symbol as is represented in the tree.
         self.symbol = symbol
         # regex filename is used to read for the regex file.
-        self.regex_pattern = read_regex_from_file(regexfilename)
+        self.regex_pattern = self.read_regex_from_file(regexfilename)
         self.runfilename = runfilename
     
     def run(self, *args) :
@@ -34,6 +34,14 @@ class Operator:
           15
         '''
         return runfile(self.runfilename, *args)
+
+if __name__ == '__main__' :
+    # Tests :
+    add_run = 'operators_definitions/add_exec.py'
+    add_pattern = 'operators_definitions/add_pattern.py'
+    add_op = Operator('add', '+', add_pattern, add_run)
+    assert add_op.regex_pattern == r'(.+)\+(.+)'
+    assert add_op.run(1, 2) == 3
         
         
     
