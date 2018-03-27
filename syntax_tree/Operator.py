@@ -8,27 +8,14 @@ import re
 
 class Operator:
     
-    def __init__(self, name, symbol, prec, num, rule) :
+    def __init__(self, name, symbol, regexfilename, runfilename) :
         '''
         Initialize the Operator.
         '''
         self.name = name
+        # symbol to be represented in the tree.
         self.symbol = symbol
-        # Note that the prec is defined as the precedence
-        # of the operator. It is either 'prefix' 'suffix'
-        # or 'infix'.
-        self.prec = prec
-        # This is the number of arguments. This is for
-        # prefix and suffix.
-        # Prefix and Suffix can have any number of arguments.
-        # We have to specify it.
-        self.num = num
-        # The rule specifies how to use the operator.
-        # The rule follows this format:
-        # The first position is being addressed as a,
-        # second as b, third as c, and so on.
-        # For example, increment can be written as 'a+1'
-        # Add can be written as 'a+b'
+        # file
     
     def get_regex(self) :
         '''
