@@ -7,9 +7,13 @@ Here are the list of what I have written + documented :
 - Union Find Disjoint Set
 - Fenwick Tree: simple version
 - Fenwick Tree: max in range version
+- Heap
+
+Written without test case generators :
+
 - Quickselect (no test case generator yet)
 - Mock file system (no test case generator yet)
-- Heap
+- Binary search for the answer
 
 Ongoing :
 
